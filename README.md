@@ -128,7 +128,10 @@ cd /etc/nginx/sites-enabaled
 sudo ln -s /etc/nginx/sites-available/yourdomain.conf
 ````
 
-
+Restart nginx
+```
+sudo service nginx restart
+````
 
 
 
