@@ -80,9 +80,53 @@ volumes:
   mysql: {}
 
 ````
-Connect to the wordpress website with the machine IP address and create the account.
+Connect to the wordpress website with the machine IP address and create admin account to login.
 
+***Configure SSL certificate using letsEncrypt***
 
+Install Nginx server
+
+```
+sudo apt install nginx
+````
+Next Create a configuration file in sites-available
+
+```
+cd /etc/nginx/sites-available
+````
+```
+sudo vi yourdomain.conf
+````
+
+past the below lines in the configuration file
+
+```
+server {
+root /var/www/html;
+        listen 80; 
+        listen [::]:80;
+        server_name yourdomain.com www.yourdomain.com;
+        location / {
+            proxy_pass         http://127.0.0.1:8080;
+            proxy_redirect     off;
+            proxy_set_header   Host $host;
+            proxy_set_header   X-Real-IP $remote_addr;
+            proxy_set_header   X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header   X-Forwarded-Host $server_name;
+            proxy_set_header   X-Forwarded-Proto $scheme;
+        }
+}
+````
+
+Go to sites enable and make yourdomain.conf as the default config file.
+
+```
+cd /etc/nginx/sites-enabaled
+````
+
+```
+sudo ln -s /etc/nginx/sites-available/yourdomain.conf
+````
 
 
 
