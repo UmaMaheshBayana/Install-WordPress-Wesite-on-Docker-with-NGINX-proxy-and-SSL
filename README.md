@@ -82,7 +82,7 @@ volumes:
 ````
 Connect to the wordpress website with the machine IP address and create admin account to login.
 
-***Configure SSL certificate using letsEncrypt***
+***Install Nginx and configure reverse proxy from 8080 to 80***
 
 Install Nginx server
 
@@ -132,6 +132,31 @@ Restart nginx
 ```
 sudo service nginx restart
 ````
+***Install Certbort to configure SSL certificate***
+
+```
+sudo apt install -y software-properties-common
+````
+
+```
+sudo apt update
+````
+
+```
+sudo apt install -y python-certbot-nginx
+````
+
+Configure SSL certficate
+
+```
+sudo  certbot --nginx -d yourdomain.com -d www.yourdomain.com
+````
+
+***Certificate will be created***
+
+
+Reference Link
+https://youtu.be/T7flzYEtMGA
 
 
 
