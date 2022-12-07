@@ -143,7 +143,7 @@ sudo apt update
 ````
 
 ```
-sudo apt install -y python-certbot-nginx
+sudo apt-get install python3-certbot-nginx
 ````
 
 Configure SSL certficate
